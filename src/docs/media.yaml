@@ -33,6 +33,28 @@
               type: array
               items:
                 $ref: '#/components/schemas/Media'
+/media/{id}:
+  get:
+    summary: Busca um item de mídia específico pelo seu id
+    description: Retorna o objeto da mídia correspondente ao id informado.
+    tags:
+      - Media
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ID da mídia
+    responses:
+      '200':
+        description: O objeto da mídia correspondente.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Media'
+      '404':
+        description: Mídia não encontrada
 components:
   schemas:
     MediaInput:

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { CreateMediaDto } from './dto/create-media.dto';
 
@@ -17,6 +17,10 @@ export class MediaService {
   }
 
   async findOne(id: string) {
-    return this.prisma.media.findUnique({ where: { id } });
+  const media = await this.prisma.media.findUnique({ where: { id } });
+  if (!media) {
+    throw new NotFoundException('Mídia não encontrada');
+  }
+  return media;
   }
 }
