@@ -25,6 +25,30 @@
         description: Operação bem-sucedida, favorito adicionado
       '404':
         description: Mídia não encontrada
+  get:
+    summary: Lista todos os itens favoritos do usuário
+    description: Retorna um array com os objetos de mídia favoritados pelo usuário identificado por {userId}.
+    tags:
+      - Favorites
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: ID do usuário
+    responses:
+      '200':
+        description: Um array com os objetos de mídia favoritados
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Media'
+      '404':
+        description: Usuário não encontrado
 components:
   schemas:
     FavoriteInput:

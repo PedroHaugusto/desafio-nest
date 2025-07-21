@@ -26,4 +26,11 @@ export class FavoriteService {
       throw error;
     }
   }
+  async getFavorites(userId: string) {
+  const favorites = await this.prisma.favorite.findMany({
+    where: { userId },
+    include: { media: true },
+  });
+  return favorites.map(fav => fav.media);
+  }
 }
