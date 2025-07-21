@@ -9,32 +9,22 @@ Antes de rodar o back-end, instale:
 
 ## Configuração Inicial
 
-1. Abra o terminal na raiz do projeto.
+1. Clone o repositório
 2. Copie o arquivo `.env.example` para `.env` e configure as variáveis conforme necessário.
 3. Instale as dependências:
    ```bash
    npm install
    ```
-4. Execute as migrations e atualizações necessárias:
+4. Construa o container do Docker:
    ```bash
-   npx prisma migrate dev
-   npx prisma generate
+   docker-compose up
    ```
-
-## Banco de Dados
-
-O sistema utiliza Docker para subir o banco PostgreSQL.
-
-Para rodar o serviço:
-```bash
-docker-compose up
-```
-
-Para reconstruir o container:
-```bash
-docker-compose up --build
-```
-
+4. Em outro terminal execute as migrations e atualizações necessárias:
+   ```bash
+   npx prisma generate
+   npx prisma migrate dev
+   ```
+   
 A API pode ser executada localmente:
 
 ```bash
