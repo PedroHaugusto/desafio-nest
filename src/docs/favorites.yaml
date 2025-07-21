@@ -1,0 +1,39 @@
+/users/{userId}/favorites:
+  post:
+    summary: Adiciona mídia aos favoritos do usuário
+    description: Adiciona um item de mídia à lista de favoritos do usuário identificado por {userId}.
+    tags:
+      - Favorites
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: ID do usuário
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FavoriteInput'
+          example:
+            mediaId: "e7b8c2a2-4c2b-4e2a-9b2e-123456789abc"
+    responses:
+      '204':
+        description: Operação bem-sucedida, favorito adicionado
+      '404':
+        description: Mídia não encontrada
+components:
+  schemas:
+    FavoriteInput:
+      type: object
+      required:
+        - mediaId
+      properties:
+        mediaId:
+          type: string
+          format: uuid
+      example:
+        mediaId: "e7b8c2a2-4c2b-4e2a-9b2e-123456789abc"

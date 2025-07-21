@@ -17,4 +17,21 @@ model Media {
   genre       String
 
   @@unique([title, description])
+  favorites   Favorite[]
+}
+
+model User {
+  id        String    @id @default(uuid())
+  favorites Favorite[]
+}
+
+model Favorite {
+  id      String @id @default(uuid())
+  userId  String
+  mediaId String
+
+  user    User   @relation(fields: [userId], references: [id])
+  media   Media  @relation(fields: [mediaId], references: [id])
+
+  @@unique([userId, mediaId])
 }
