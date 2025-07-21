@@ -38,6 +38,7 @@ http://localhost:3000/swagger
 
 ## Documentação e Informações Adicionais (Explicando minha linha de pensamento)
 - **NestJS** (Optei por ter maior conhecimento visando produtividade)
+- **Docker** (Api e Banco  containerizados)
 - **Swagger** (Documentei com Swagger em arquivos .yaml para facilitar manutenção na documentação dividindo em arquivos únicos e evitar poluir o código com annotations do swagger)
 - **Joi** (Optei por Joi para validações por ter maior conhecimento)
 - **PostgreSQL** (Optei por um banco de dados relacional)
