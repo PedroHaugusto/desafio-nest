@@ -19,6 +19,20 @@
               $ref: '#/components/schemas/Media'
       '400':
         description: Dados inválidos
+  get:
+    summary: Lista todos os itens de mídia disponíveis no catálogo
+    description: Retorna um array com todos os objetos de mídia cadastrados.
+    tags:
+      - Media
+    responses:
+      '200':
+        description: Um array com todos os objetos de mídia.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Media'
 components:
   schemas:
     MediaInput:
