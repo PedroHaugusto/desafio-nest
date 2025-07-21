@@ -1,0 +1,56 @@
+/media:
+  post:
+    summary: Adiciona um novo item de mídia
+    description: Adiciona um novo item (filme ou série) ao catálogo.
+    tags:
+      - Media
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MediaInput'
+    responses:
+      '201':
+        description: O objeto da mídia recém-criada, incluindo um id único gerado pelo sistema.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Media'
+      '400':
+        description: Dados inválidos
+components:
+  schemas:
+    MediaInput:
+      type: object
+      required:
+        - title
+        - description
+        - type
+        - releaseYear
+        - genre
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum: [movie, series]
+        releaseYear:
+          type: integer
+        genre:
+          type: string
+      example:
+        title: "Matrix Genérica"
+        description: "Um dev descobre que o mundo é uma simulação e precisa debugá-lo."
+        type: "movie"
+        releaseYear: 2025
+        genre: "Ficção Científica"
+    Media:
+      allOf:
+        - $ref: '#/components/schemas/MediaInput'
+        - type: object
+          properties:
+            id:
+              type: string
