@@ -33,4 +33,10 @@ export class FavoriteService {
   });
   return favorites.map(fav => fav.media);
   }
+
+  async removeFavorite(userId: string, mediaId: string) {
+    await this.prisma.favorite.deleteMany({
+      where: { userId, mediaId },
+    });
+  }
 }

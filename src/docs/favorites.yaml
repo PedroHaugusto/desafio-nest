@@ -49,6 +49,30 @@
                 $ref: '#/components/schemas/Media'
       '404':
         description: Usuário não encontrado
+/users/{userId}/favorites/{mediaId}:
+  delete:
+    summary: Remove um item de mídia dos favoritos do usuário
+    description: Remove o item de mídia identificado por {mediaId} da lista de favoritos do usuário identificado por {userId}.
+    tags:
+      - Favorites
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: ID do usuário
+      - name: mediaId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: ID da mídia
+    responses:
+      '204':
+        description: Operação bem-sucedida, favorito removido
 components:
   schemas:
     FavoriteInput:
